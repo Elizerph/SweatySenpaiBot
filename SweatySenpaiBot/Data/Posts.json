@@ -1,0 +1,146 @@
+[
+	{
+		"Time": "2022-11-23T17:55:19.7515432+05:00",
+		"Period": "1.00:00:00",
+		"ChatId": "902810952490172436",
+		"Posts": [
+			{
+				"Url": "https://yandex.ru/pogoda/?lat=56.90581894&lon=59.94326401",
+				"Title": "Погода",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tПервоуральск: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://yandex.ru/pogoda/?lat=58.010454&lon=56.229441",
+				"Title": "",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tПермь: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://yandex.ru/pogoda/?lat=59.93909836&lon=30.31587601",
+				"Title": "",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tСанкт-Петербург: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://yandex.ru/pogoda/?lat=6.934681416&lon=79.84284973",
+				"Title": "",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tКоломбо: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://yandex.ru/pogoda/aschaffenburg",
+				"Title": "",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tАшаффенбург: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://www.banki.ru/products/currency/cb/",
+				"Title": "Курсы валют",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "<a href=\"/products/currency/usd/\">\\s*<strong>Доллар США</strong>\\s*</a>\\s*</td>\\s*<td>(?<value>.*?)</td>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tДоллар США: <value>",
+						"Separator": "\r\n"
+					},
+					{
+						"Regex": "<a href=\"/products/currency/eur/\">\\s*<strong>Евро</strong>\\s*</a>\\s*</td>\\s*<td>(?<value>.*?)</td>",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tЕвро: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			},
+			{
+				"Url": "https://xn--80aesfpebagmfblc0a.xn--p1ai/information/",
+				"Title": "Коронавирус в России за сутки",
+				"Separator": "\r\n",
+				"Parsers": [
+					{
+						"Regex": "\"hospitalized\"\\s*:\\s*\"(?<value>.*?)\"",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tГоспитализировано: <value>",
+						"Separator": "\r\n"
+					},
+					{
+						"Regex": "\"healedChange\"\\s*:\\s*\"(?<value>.*?)\"",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tВыздоровело: <value>",
+						"Separator": "\r\n"
+					},
+					{
+						"Regex": "\"sickChange\"\\s*:\\s*\"(?<value>.*?)\"",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tЗаболело: <value>",
+						"Separator": "\r\n"
+					},
+					{
+						"Regex": "\"diedChange\"\\s*:\\s*\"(?<value>.*?)\"",
+						"Keys": [
+							"<value>"
+						],
+						"Template": "\tУмерло: <value>",
+						"Separator": "\r\n"
+					}
+				]
+			}
+		]
+	}
+]

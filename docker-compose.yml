@@ -1,0 +1,15 @@
+volumes:
+  data:
+    name: sweatysenpaibot-data
+services:
+  bot:
+    image: ryujinnokenwokurae/sweatysenpaibot
+    build:
+      context: .
+      dockerfile: SweatySenpaiBot/Dockerfile
+    volumes:
+        - data:/app/Data
+    restart: always
+    container_name: sweatysenpaibot-bot
+    environment:
+      - discordbottoken=${discordbottoken}

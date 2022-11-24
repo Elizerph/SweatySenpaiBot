@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SweatySenpaiBot": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
