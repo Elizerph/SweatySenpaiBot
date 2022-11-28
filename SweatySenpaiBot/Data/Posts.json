@@ -1,6 +1,6 @@
 [
 	{
-		"Time": "2022-11-23T17:55:19.7515432+05:00",
+		"Time": "2022-11-28T18:40:37.7535698Z",
 		"Period": "1.00:00:00",
 		"ChatId": "902810952490172436",
 		"Posts": [
@@ -60,21 +60,6 @@
 							"<value>"
 						],
 						"Template": "\tКоломбо: <value>",
-						"Separator": "\r\n"
-					}
-				]
-			},
-			{
-				"Url": "https://yandex.ru/pogoda/aschaffenburg",
-				"Title": "",
-				"Separator": "\r\n",
-				"Parsers": [
-					{
-						"Regex": "<div class=\"temp fact__temp fact__temp_size_s\" role=\"text\"><span class=\"temp__value temp__value_with-unit\">(?<value>.*?)<\\/span><\\/div>",
-						"Keys": [
-							"<value>"
-						],
-						"Template": "\tАшаффенбург: <value>",
 						"Separator": "\r\n"
 					}
 				]

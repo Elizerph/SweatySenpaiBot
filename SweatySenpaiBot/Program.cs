@@ -2,6 +2,8 @@
 using ElizerBot.Adapter;
 using ElizerBot.Adapter.Triggers;
 
+using ElizerWork;
+
 using log4net.Config;
 
 using System.Reflection;
@@ -30,7 +32,8 @@ namespace SweatySenpaiBot
             Console.CancelKeyPress += (_, _) => cts.Cancel();
 
             var provider = new HttpContentProvider(TimeSpan.FromSeconds(2));
-            var context = new WorkerContext(TimeSpan.FromMinutes(1), provider);
+            var worker = new Worker(TimeSpan.FromMinutes(1), () => DateTime.UtcNow);
+            var context = new WorkerContext(worker, provider);
 
             var updateHandler = new TriggerBasedBotUpdateHandler<WorkerContext>(context,
                 null,

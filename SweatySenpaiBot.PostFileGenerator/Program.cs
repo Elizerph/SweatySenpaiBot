@@ -14,7 +14,7 @@ namespace SweatySenpaiBot.PostFileGenerator
                 new PostBundle
                 {
                     ChatId = "902810952490172436",
-                    Time = DateTime.Now,
+                    Time = DateTime.UtcNow,
                     Period = TimeSpan.FromDays(1),
                     Posts = new[]
                     {

@@ -10,24 +10,18 @@ namespace SweatySenpaiBot
     {
         private const string PostBundlesFile = "Data/Posts.json";
 
-        private Worker? _worker;
-        private WorkerManager? _manager;
-        private readonly TimeSpan _workerBeatPeriod;
+        private readonly Worker _worker;
         private readonly IContentProvider _contentProvider;
 
-        public WorkerContext(TimeSpan workerBeatPeriod, IContentProvider contentProvider)
+        public WorkerContext(Worker worker, IContentProvider contentProvider)
         {
-            _workerBeatPeriod = workerBeatPeriod;
+            _worker = worker;
             _contentProvider = contentProvider;
         }
 
         public async Task RefreshPostBundles(IBotAdapter bot, Task<Stream> postBundleStream)
         {
-            if (_manager != null)
-                await _manager.Stop();
-
-            _worker = new Worker(_workerBeatPeriod);
-            _manager = new WorkerManager(_worker);
+            await _worker.Stop();
 
             using var stream = await postBundleStream;
             using var reader = new StreamReader(stream);
@@ -35,21 +29,19 @@ namespace SweatySenpaiBot
             reader.Close();
             await File.WriteAllTextAsync(PostBundlesFile, bundlesText);
             var bundles = JsonConvert.DeserializeObject<IReadOnlyCollection<PostBundle>>(bundlesText);
-            foreach (var bundle in bundles) 
+            var workItems = bundles?.Select(e => new WorkItem(e.Time, e.Period, async () =>
             {
-                _worker.QueueRecurring(bundle.Time, bundle.Period, async () => 
+                var builder = new PostBundleContentBuilder(_contentProvider);
+                var text = await builder.Build(e);
+                var chat = new ChatAdapter(e.ChatId, false);
+                var message = new NewMessageAdapter(chat)
                 {
-                    var builder = new PostBundleContentBuilder(_contentProvider);
-                    var text = await builder.Build(bundle);
-                    var chat = new ChatAdapter(bundle.ChatId, false);
-                    var message = new NewMessageAdapter(chat)
-                    {
-                        Text = text
-                    };
-                    await bot.SendMessage(message);
-                });
-            }
-            _manager.Start();
+                    Text = text
+                };
+                await bot.SendMessage(message);
+            })).ToArray();
+
+            await _worker.Start(workItems ?? Array.Empty<WorkItem>());
         }
 
         public static Stream GetPostBundlesStream()
