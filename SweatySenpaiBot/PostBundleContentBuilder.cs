@@ -1,4 +1,6 @@
-﻿namespace SweatySenpaiBot
+﻿using SweatySenpaiBot.Content;
+
+namespace SweatySenpaiBot
 {
     public class PostBundleContentBuilder
     {

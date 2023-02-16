@@ -4,6 +4,8 @@ using ElizerWork;
 
 using Newtonsoft.Json;
 
+using SweatySenpaiBot.Content;
+
 namespace SweatySenpaiBot
 {
     internal class WorkerContext

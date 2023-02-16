@@ -6,6 +6,8 @@ using ElizerWork;
 
 using log4net.Config;
 
+using SweatySenpaiBot.Content;
+
 using System.Reflection;
 
 namespace SweatySenpaiBot
@@ -31,7 +33,8 @@ namespace SweatySenpaiBot
             var cts = new CancellationTokenSource();
             Console.CancelKeyPress += (_, _) => cts.Cancel();
 
-            var provider = new HttpContentProvider(TimeSpan.FromSeconds(2));
+            var provider = new HttpContentProvider(TimeSpan.FromSeconds(2))
+                .WithAttempts(new[] { 3, 5 }.Select(e => TimeSpan.FromSeconds(e)));
             var worker = new Worker(TimeSpan.FromMinutes(1), () => DateTime.UtcNow);
             var context = new WorkerContext(worker, provider);
 
