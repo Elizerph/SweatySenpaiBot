@@ -34,7 +34,7 @@ namespace SweatySenpaiBot
             Console.CancelKeyPress += (_, _) => cts.Cancel();
 
             var provider = new HttpContentProvider(TimeSpan.FromSeconds(2))
-                .WithAttempts(new[] { 3, 5 }.Select(e => TimeSpan.FromSeconds(e)));
+                .WithAttempts(new[] { 1, 2, 3 }.Select(e => TimeSpan.FromMinutes(e)));
             var worker = new Worker(TimeSpan.FromMinutes(1), () => DateTime.UtcNow);
             var context = new WorkerContext(worker, provider);
 
