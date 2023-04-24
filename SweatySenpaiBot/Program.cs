@@ -21,6 +21,7 @@ namespace SweatySenpaiBot
             XmlConfigurator.Configure();
             var assembly = Assembly.GetExecutingAssembly();
             var assemblyVersion = assembly.GetName().Version;
+            Log.Debug($"Debug version");
             Log.Info($"Version {assemblyVersion}");
 
             var token = Environment.GetEnvironmentVariable(TokenVariableName);
@@ -33,7 +34,7 @@ namespace SweatySenpaiBot
             var cts = new CancellationTokenSource();
             Console.CancelKeyPress += (_, _) => cts.Cancel();
 
-            var provider = new HttpContentProvider(TimeSpan.FromSeconds(2))
+            var provider = new HttpContentProvider(TimeSpan.FromSeconds(2), Log.Instance)
                 .WithAttempts(new[] { 1, 2, 3 }.Select(e => TimeSpan.FromMinutes(e)));
             var worker = new Worker(TimeSpan.FromMinutes(1), () => DateTime.UtcNow);
             var context = new WorkerContext(worker, provider);

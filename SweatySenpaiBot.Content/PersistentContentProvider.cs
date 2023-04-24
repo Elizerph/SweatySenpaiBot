@@ -1,4 +1,6 @@
-﻿namespace SweatySenpaiBot.Content
+﻿using log4net;
+
+namespace SweatySenpaiBot.Content
 {
     public class PersistentContentProvider : IContentProvider
     {
@@ -15,10 +17,10 @@
             foreach (var provider in _providers)
             {
                 var result = await provider.GetContentAsync(url);
-                if (result.IsSuccess)
-                    return result;
-                else 
+                if (result.Exception != null)
                     exceptions.Add(result.Exception);
+                else
+                    return result;
             }
             return ContentProviderResult.FromException(new AggregateException(exceptions));
         }

@@ -16,7 +16,7 @@ namespace SweatySenpaiBot
         public async Task<string> Build(Post post)
         {
             var providerResult = await _contentProvider.GetContentAsync(post.Url);
-            if (!providerResult.IsSuccess)
+            if (providerResult.Exception != null)
             {
                 Log.Warn($"Unable to get content from {post.Title} ({post.Url})", providerResult.Exception);
                 return string.Empty;

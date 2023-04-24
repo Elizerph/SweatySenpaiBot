@@ -8,10 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SweatySenpaiBot.Content\SweatySenpaiBot.Content.csproj" />
     <ProjectReference Include="..\SweatySenpaiBot\SweatySenpaiBot.csproj" />
   </ItemGroup>
 

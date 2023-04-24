@@ -4,41 +4,41 @@ namespace SweatySenpaiBot
 {
     internal static class Log
     {
-        private static readonly ILog _instance = LogManager.GetLogger(typeof(Program));
+        public static ILog Instance { get; } = LogManager.GetLogger(typeof(Program));
 
         public static void Info(string text)
         {
-            _instance.Info(text);
+            Instance.Info(text);
         }
 
         public static void Info(string text, Exception exception)
         {
-            _instance.Info(text, exception);
+            Instance.Info(text, exception);
         }
 
         public static void Error(string text, Exception exception)
         {
-            _instance.Error(text, exception);
+            Instance.Error(text, exception);
         }
 
         public static void Warn(string text)
         {
-            _instance.Warn(text);
+            Instance.Warn(text);
         }
 
         public static void Warn(string text, Exception exception)
         {
-            _instance.Warn(text, exception);
+            Instance.Warn(text, exception);
         }
 
         public static void Debug(string text)
         {
-            _instance.Debug(text);
+            Instance.Debug(text);
         }
 
         public static void Debug(string text, Exception exception)
         {
-            _instance.Debug(text, exception);
+            Instance.Debug(text, exception);
         }
     }
 }
